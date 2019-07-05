@@ -121,13 +121,11 @@ Module.register("MMM-MQTTfloorplan", {
 						let itemCount=0
 						for(let key of Object.keys(payload)){
   						if(config.fields.indexOf(key)>=0){
-								if(key!='topic'){
-									this.updateDivForItem(
-									itemCount++,
-									payload[key].toString().toUpperCase(),
-									config);                    
-									 }                
-								 }
+								this.updateDivForItem(
+								itemCount++,
+								payload[key].toString().toUpperCase(),
+								config);                    
+								 }                
 							}
 						}
 						/* Extract value if JSON Pointer is configured

@@ -54,8 +54,7 @@
 						topic: 'eStatus',
 						label: 'Weather',
 						type: 'label',
-						//key: 'OAT', //I would like to have configurable keyword for each name of object that I want display.
-						//jsonpointer: '/OAT',
+						  fields: ['OAT','OAH'],   // only display these two fields of status message
 						display: { left: 55, top: 337, prefix: "", suffix: " °C", decimals: 1 },
 					},
 					]
