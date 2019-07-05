@@ -61,11 +61,12 @@ module.exports = NodeHelper.create({
 				// Only pass on messages in a topic that we know about
 				console.log(self.name + ': Received MQTT message from topic ' + topic);
 
-				if(topics.includes(topic) ){
-				  // add this topic to payload
-				  payload.topic=topic
-				  // send on to module
-				  self.sendSocketNotification('MQTT_PAYLOAD', payload)
+				if (topics.includes(topic)) {
+					var value = payload.toString();
+					self.sendSocketNotification('MQTT_PAYLOAD', {
+						topic: topic,
+						value: value
+					});
 				}
 			});
 		}
