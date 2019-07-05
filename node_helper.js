@@ -22,6 +22,13 @@ module.exports = NodeHelper.create({
 				topics[i] = self.config.subscriptions[i].topic;
 			}
 
+   console.log("setting timeout");
+	setTimeout(()=> {
+			 self.sendSocketNotification('MQTT_PAYLOAD', 
+			 { "topic":'eStatus', 'value': {'OAT':-190, 'OAH':-195, "Wind":-100, "WindDir":-105} })
+		},
+		5000)
+	
 			self.loaded = true;
 			self.options = {};
 
