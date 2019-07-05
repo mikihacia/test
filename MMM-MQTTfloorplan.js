@@ -81,7 +81,7 @@ Module.register("MMM-MQTTfloorplan", {
 
 	getScripts: function () {
 		return [
-			this.file('node_modules/jsonpointer/jsonpointer.js')
+			//this.file('jsonpointer.js')
 		];
 	},
 
@@ -104,29 +104,31 @@ Module.register("MMM-MQTTfloorplan", {
 		if (notification === 'MQTT_PAYLOAD') {
 			if (payload != null) {
 				var config = {}; 
+				console.log(JSON.stringify(payload))				
 				for (let key of Object.keys(this.config)) {
 					 let info =   this.config[key]
 					 if (typeof info == 'object' )
 						 info = JSON.stringify( this.config[key]);      
-						// console.log(" object element =" + key+ " value = " +  info)
-						 console.log(JSON.stringify(payload))
+					 console.log(" object element =" + key+ " value = " +  info)
 				}
 				for (i = 0; i < this.config.subscriptions.length; i++) {
 					if (this.config.subscriptions[i].topic == payload.topic) {
-						var value = payload.value;
+						//var value = payload.value;
 						this.config.subscriptions[i].lastChanged = Date.now();
 
 						// Just grab local config ref for convenience
 						config = this.config.subscriptions[i];
-
+						let itemCount=0
 						for(let key of Object.keys(payload)){
-						   if(key!='topic'){
-							this.updateDivForItem(
-							i,
-							payload[key].toUpperCase(),
-							config);                    
-							   }                
-						   }
+  						if(config.fields.indexOf(key)>=0){
+								if(key!='topic'){
+									this.updateDivForItem(
+									itemCount++,
+									payload[key].toString().toUpperCase(),
+									config);                    
+									 }                
+								 }
+							}
 						}
 						/* Extract value if JSON Pointer is configured
 						if(config.jsonpointer) {
