@@ -119,11 +119,11 @@ Module.register("MMM-MQTTfloorplan", {
 						// Just grab local config ref for convenience
 						config = this.config.subscriptions[i];
 						let itemCount=0
-						for(let key of Object.keys(payload)){
+						for(let key of Object.keys(payload.value)){
   						if(config.fields.indexOf(key)>=0){
 								this.updateDivForItem(
 								itemCount++,
-								payload[key].toString().toUpperCase(),
+								payload.value[key].toString().toUpperCase(),
 								config);                    
 								 }                
 							}

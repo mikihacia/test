@@ -25,7 +25,7 @@ module.exports = NodeHelper.create({
    console.log("setting timeout");
 	setTimeout(()=> {
 			 self.sendSocketNotification('MQTT_PAYLOAD', 
-			 { "topic":'eStatus', 'OAT':-190, 'OAH':-195, "Wind":-100, "WindDir":-105})
+			 { "topic":'eStatus', 'value': {'OAT':-190, 'OAH':-195, "Wind":-100, "WindDir":-105} })
 		},
 		5000)
 	
